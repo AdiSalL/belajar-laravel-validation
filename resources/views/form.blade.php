@@ -44,6 +44,7 @@
               class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter Username"
               name="username"
+              value="{{old("username")}}"
             />
 
   
@@ -81,7 +82,7 @@
           </div>@enderror
         </div>
   
-        <div>
+        <div class="flex flex-col">
           <label for="password" class="sr-only">Password: </label>
   
           <div class="relative">
@@ -90,8 +91,9 @@
               class="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter password"
               name="password"
+                value="{{old("password")}}"
             />
-            @error("password") {{$message}} @enderror
+      
   
             <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
               <svg
@@ -116,6 +118,21 @@
               </svg>
             </span>
           </div>
+
+          @error("password")<div role="alert" class="alert alert-error">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 shrink-0 stroke-current"
+              fill="none"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Error! {{$message}} .</span>
+          </div> @enderror
         </div>
   
         <button
