@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login Form</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+
 </head>
 <body>
 
@@ -34,7 +36,7 @@
         <p class="text-center text-lg font-medium">Sign in to your account</p>
         @csrf
         <div>
-          <label for="username" class="sr-only">username</label>
+          <label for="username" class="sr-only">Username: </label>
 
           <div class="relative">
             <input
@@ -43,6 +45,7 @@
               placeholder="Enter Username"
               name="username"
             />
+
   
             <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
               <svg
@@ -60,11 +63,26 @@
                 />
               </svg>
             </span>
+
           </div>
+          @error("username")<div role="alert" class="alert alert-error">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6 shrink-0 stroke-current"
+              fill="none"
+              viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Error! {{$message}}.</span>
+          </div>@enderror
         </div>
   
         <div>
-          <label for="password" class="sr-only">Password</label>
+          <label for="password" class="sr-only">Password: </label>
   
           <div class="relative">
             <input
@@ -73,6 +91,7 @@
               placeholder="Enter password"
               name="password"
             />
+            @error("password") {{$message}} @enderror
   
             <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
               <svg

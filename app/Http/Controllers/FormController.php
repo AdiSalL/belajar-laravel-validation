@@ -18,7 +18,7 @@ class FormController extends Controller
 
     public function submitForm(Request $request): HttpResponse {
         $data = $request->validate([
-            "username" => "required",
+            "username" => ["required", "min:5"],
             "password" => "required",
         ]);
 
