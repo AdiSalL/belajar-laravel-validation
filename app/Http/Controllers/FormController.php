@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use Dotenv\Exception\ValidationException;
 use GuzzleHttp\Psr7\Response;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as HttpResponse;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response as FacadesResponse;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,12 +18,10 @@ class FormController extends Controller
         return view('form');
     }
 
-    public function submitForm(Request $request): HttpResponse {
-        $data = $request->validate([
-            "username" => ["required", "min:5"],
-            "password" => "required",
-        ]);
-
+    public function submitForm(LoginRequest $request): HttpResponse {
+ 
+        $data = $request->validated();
+        Log::info(json_encode($data, JSON_PRETTY_PRINT));
         return response("OK", HttpResponse::HTTP_BAD_REQUEST);
     }
     //
